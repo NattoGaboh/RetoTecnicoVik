@@ -1,4 +1,5 @@
-﻿using CatalogOrder.Domain.Entity;
+﻿using CatalogOrder.Application.Common.Interfaces;
+using CatalogOrder.Domain.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace CatalogOrder.Infrastructure.Security
 {
-    public class JwtTokenGenerator
+    public class JwtTokenGenerator : IJwtTokenGenerator
     {
         private readonly IConfiguration _configuration;
 

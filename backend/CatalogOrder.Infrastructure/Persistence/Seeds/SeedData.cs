@@ -28,16 +28,16 @@ namespace CatalogOrder.Infrastructure.Persistence.Seeds
                 UserRole.Operator);
 
             var category = new Category(
-                "Electronicos",
-                "seed");
+                "Perifericos",
+                "operator");
 
             var product = new Product(
-                "Mouse",
-                "Gamer Mouse",
+                "Mouse Razer",
+                "Mouse Gamer",
                 250,
                 15,
                 category.Id,
-                "seed");
+                "operator");
 
             await context.Users.AddRangeAsync(admin, operatorUser);
 

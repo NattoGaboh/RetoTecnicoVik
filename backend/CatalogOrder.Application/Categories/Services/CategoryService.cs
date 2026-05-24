@@ -3,11 +3,7 @@ using CatalogOrder.Application.Common.Interfaces;
 using CatalogOrder.Application.Common.Models;
 using CatalogOrder.Domain.Entity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace CatalogOrder.Application.Categories.Services
 {
@@ -17,9 +13,7 @@ namespace CatalogOrder.Application.Categories.Services
 
         private readonly ICurrentUserService _currentUser;
 
-        public CategoryService(
-            IAppDbContext context,
-            ICurrentUserService currentUser)
+        public CategoryService(IAppDbContext context, ICurrentUserService currentUser)
         {
             _context = context;
             _currentUser = currentUser;
@@ -37,12 +31,9 @@ namespace CatalogOrder.Application.Categories.Services
                 .ToListAsync();
         }
 
-        public async Task<ApiResponse<Guid>> CreateAsync(
-            CreateCategoryDto dto)
+        public async Task<ApiResponse<Guid>> CreateAsync(CreateCategoryDto dto)
         {
-            var category = new Category(
-                dto.Name,
-                _currentUser.Username);
+            var category = new Category(dto.Name, _currentUser.Username);
 
             await _context.Categories.AddAsync(category);
 

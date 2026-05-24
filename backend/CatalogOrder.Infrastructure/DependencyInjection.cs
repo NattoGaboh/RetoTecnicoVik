@@ -1,4 +1,5 @@
-﻿using CatalogOrder.Infrastructure.Persistence;
+﻿using CatalogOrder.Application.Common.Interfaces;
+using CatalogOrder.Infrastructure.Persistence;
 using CatalogOrder.Infrastructure.Security;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -24,7 +25,8 @@ namespace CatalogOrder.Infrastructure
             });
 
             services.AddScoped<JwtTokenGenerator>();
-
+            services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
+            services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
             return services;
         }
     }

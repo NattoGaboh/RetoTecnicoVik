@@ -20,7 +20,6 @@ namespace CatalogOrder.Application.Common.Interfaces
 
         DbSet<AppUser> Users { get; }
 
-        Task<int> SaveChangesAsync(
-            CancellationToken cancellationToken = default);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 }
