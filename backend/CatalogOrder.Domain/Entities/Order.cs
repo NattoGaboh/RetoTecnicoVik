@@ -29,15 +29,9 @@ namespace CatalogOrder.Domain.Entity
             Status = OrderStatus.Pending;
         }
 
-        public void AddDetail(
-            Guid productId,
-            int quantity,
-            decimal unitPrice)
+        public void AddDetail(Guid productId,int quantity, decimal unitPrice)
         {
-            var detail = new OrderDetail(
-                productId,
-                quantity,
-                unitPrice);
+            var detail = new OrderDetail(productId,quantity,unitPrice);
 
             _details.Add(detail);
 

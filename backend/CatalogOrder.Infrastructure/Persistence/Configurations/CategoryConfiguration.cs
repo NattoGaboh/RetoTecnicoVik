@@ -1,0 +1,38 @@
+﻿using CatalogOrder.Domain.Entity;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CatalogOrder.Infrastructure.Persistence.Configurations
+{
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    {
+        public void Configure(EntityTypeBuilder<Category> builder)
+        {
+            builder.ToTable("Categories");
+
+            builder.HasKey(x => x.Id);
+
+            builder.Property(x => x.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            builder.Property(x => x.IsActive)
+                .IsRequired();
+
+            builder.Property(x => x.CreatedBy)
+                .HasMaxLength(100);
+
+            builder.Property(x => x.UpdatedBy)
+                .HasMaxLength(100);
+
+            builder.HasMany(x => x.Products)
+                .WithOne(x => x.Category)
+                .HasForeignKey(x => x.CategoryId);
+        }
+    }
+}
