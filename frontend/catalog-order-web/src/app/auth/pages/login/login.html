@@ -1,0 +1,40 @@
+<div class="login-container">
+
+  <mat-card>
+
+    <h2>Login</h2>
+
+    <form [formGroup]="form">
+
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          placeholder="Username"
+          formControlName="username">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          formControlName="password">
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="login()">
+
+        Login
+      </button>
+
+      <p *ngIf="error">
+        {{ error }}
+      </p>
+
+    </form>
+
+  </mat-card>
+
+</div>

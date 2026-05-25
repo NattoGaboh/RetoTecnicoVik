@@ -1,0 +1,130 @@
+<h1>Crear Orden</h1>
+
+<hr>
+
+<h3>Agrega Producto</h3>
+
+<div>
+
+  <select [(ngModel)]="selectedProductId">
+
+    <option value="">
+      Selecciona producto
+    </option>
+
+    <option
+      *ngFor="let product of products"
+      [value]="product.id">
+
+      {{ product.name }}
+      -
+      Stock: {{ product.stock }}
+      -
+      S/{{ product.price }}
+
+    </option>
+
+  </select>
+
+</div>
+
+<br>
+
+<div>
+
+  <input
+    type="number"
+    [(ngModel)]="quantity"
+    min="1">
+
+</div>
+
+<br>
+
+<button (click)="addItem()">
+
+  Agrega Item
+
+</button>
+
+<hr>
+
+<h3>Cart</h3>
+
+<table border="1" cellpadding="10">
+
+  <thead>
+
+    <tr>
+
+      <th>Producto</th>
+
+      <th>Cantidad</th>
+
+      <th>Precio Unitario</th>
+
+      <th>Subtotal</th>
+
+      <th>Acción</th>
+
+    </tr>
+
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let item of cart; let i = index">
+
+      <td>
+        {{ item.productName }}
+      </td>
+
+      <td>
+        {{ item.quantity }}
+      </td>
+
+      <td>
+        ${{ item.unitPrice }}
+      </td>
+
+      <td>
+        ${{ item.subtotal }}
+      </td>
+
+      <td>
+
+        <button (click)="removeItem(i)">
+
+          Eliminar
+
+        </button>
+
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>
+
+<hr>
+
+<h2>
+
+  TOTAL: S/{{ total }}
+
+</h2>
+
+<button
+  (click)="createOrder()"
+  [disabled]="cart.length === 0">
+
+  Crear Orden
+
+</button>
+
+<p>
+
+  {{ message }}
+
+</p>

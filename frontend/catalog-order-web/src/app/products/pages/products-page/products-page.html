@@ -1,0 +1,138 @@
+<h1>Productos</h1>
+
+<hr>
+
+<h3>Crear Producto</h3>
+
+<div>
+  <input  type="text" [(ngModel)]="name" placeholder="Nombre">
+
+</div>
+
+<div>
+  <input type="text" [(ngModel)]="description"  placeholder="Descripcion">
+
+</div>
+
+<div>
+  <input type="number" [(ngModel)]="price" placeholder="Precio">
+</div>
+
+<div>
+  <input type="number" [(ngModel)]="stock" placeholder="Stock">
+
+</div>
+
+<div>
+
+  <select [(ngModel)]="categoryId">
+
+    <option value="">
+      Selecciona Categoria
+    </option>
+
+    <option *ngFor="let category of categories"
+      [value]="category.id">
+      {{ category.name }}
+    </option>
+
+  </select>
+
+</div>
+
+<br>
+
+<button (click)="createProduct()">
+  Crear Producto
+</button>
+
+<hr>
+
+<h3>Buscar</h3>
+
+<input type="text" [(ngModel)]="search" placeholder="Buscar producto">
+
+<button (click)="loadProducts()">
+  Buscar
+</button>
+
+<hr>
+
+<table mat-table [dataSource]="products" class="mat-elevation-z8">
+
+  <!-- NAME -->
+  <ng-container matColumnDef="name">
+
+    <th mat-header-cell *matHeaderCellDef>
+      Nombre
+    </th>
+
+    <td mat-cell *matCellDef="let product">
+      {{ product.name }}
+    </td>
+
+  </ng-container>
+
+  <!-- PRICE -->
+  <ng-container matColumnDef="price">
+
+    <th mat-header-cell *matHeaderCellDef>
+      Precio
+    </th>
+
+    <td mat-cell *matCellDef="let product">
+      {{ product.price }}
+    </td>
+
+  </ng-container>
+
+  <!-- STOCK -->
+  <ng-container matColumnDef="stock">
+
+    <th mat-header-cell *matHeaderCellDef>
+      Stock
+    </th>
+
+    <td mat-cell *matCellDef="let product">
+      {{ product.stock }}
+    </td>
+
+  </ng-container>
+
+  <!-- CATEGORY -->
+  <ng-container matColumnDef="category">
+
+    <th mat-header-cell *matHeaderCellDef>
+      Categoria
+    </th>
+
+    <td mat-cell *matCellDef="let product">
+      {{ product.categoryName }}
+    </td>
+
+  </ng-container>
+
+  <!-- ACTIVE -->
+  <ng-container matColumnDef="active">
+
+    <th mat-header-cell *matHeaderCellDef>
+      Activo
+    </th>
+
+    <td mat-cell *matCellDef="let product">
+
+      {{ product.isActive ? 'Si' : 'No' }}
+
+    </td>
+
+  </ng-container>
+
+  <!-- HEADER -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns">
+  </tr>
+
+  <!-- ROW -->
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+
+</table>
