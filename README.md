@@ -164,6 +164,7 @@ appsettings.Development.json
 
 ## 3. Aplica migración
 
+Ubicarse en la carpeta de CatalogOrder.Api y ejecutar: 
 ```bash
 dotnet ef database update
 ```
