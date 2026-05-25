@@ -24,7 +24,6 @@ namespace OrderProcessingServices.Controllers
             {
                 return BadRequest(result);
             }
-            Console.WriteLine(result.Message);
             return Ok(result);
         }
     }

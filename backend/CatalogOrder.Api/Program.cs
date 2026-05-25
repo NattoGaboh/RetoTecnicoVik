@@ -89,6 +89,19 @@ builder.Services.AddSwaggerGen(options =>
         });
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular",
+        policy =>
+        {
+            policy
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                .WithOrigins("http://localhost:4200");
+        });
+});
+
 var app = builder.Build();
 
 using var scope = app.Services.CreateScope();
@@ -105,12 +118,14 @@ app.UseSwagger();
 
 app.UseSwaggerUI();
 
+app.UseHttpsRedirection();
+
+app.UseCors("AllowAngular");
+
 app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseHttpsRedirection();
 
 app.Run();

@@ -12,8 +12,7 @@ namespace CatalogOrder.Api.Controllers
     {
         private readonly CategoryService _service;
 
-        public CategoriesController(
-            CategoryService service)
+        public CategoriesController(CategoryService service)
         {
             _service = service;
         }
@@ -28,8 +27,7 @@ namespace CatalogOrder.Api.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(
-            CreateCategoryDto dto)
+        public async Task<IActionResult> Create(CreateCategoryDto dto)
         {
             var result = await _service.CreateAsync(dto);
 

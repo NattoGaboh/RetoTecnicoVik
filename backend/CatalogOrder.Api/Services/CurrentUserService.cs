@@ -7,8 +7,7 @@ namespace CatalogOrder.Api.Services
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CurrentUserService(
-            IHttpContextAccessor httpContextAccessor)
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }

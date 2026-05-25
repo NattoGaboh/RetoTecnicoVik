@@ -29,11 +29,9 @@ namespace CatalogOrder.Api.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create(
-            CreateProductDto dto)
+        public async Task<IActionResult> Create(CreateProductDto dto)
         {
-            var result =
-                await _service.CreateAsync(dto);
+            var result = await _service.CreateAsync(dto);
 
             return Ok(result);
         }

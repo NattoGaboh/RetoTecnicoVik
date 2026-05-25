@@ -7,14 +7,12 @@ namespace CatalogOrder.Api.Middleware
     {
         private readonly RequestDelegate _next;
 
-        public ExceptionMiddleware(
-            RequestDelegate next)
+        public ExceptionMiddleware(RequestDelegate next)
         {
             _next = next;
         }
 
-        public async Task InvokeAsync(
-            HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
             try
             {
@@ -32,8 +30,7 @@ namespace CatalogOrder.Api.Middleware
             }
             catch (Exception)
             {
-                context.Response.StatusCode =
-                    (int)HttpStatusCode.InternalServerError;
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
                 await context.Response.WriteAsJsonAsync(
                     new

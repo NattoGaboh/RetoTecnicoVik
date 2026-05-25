@@ -1,5 +1,7 @@
 ﻿using CatalogOrder.Application.Common.Interfaces;
+using CatalogOrder.Application.Common.Models;
 using CatalogOrder.Application.Orders.DTOs;
+using System.Text.Json;
 
 namespace CatalogOrder.Api.Services
 {
@@ -21,15 +23,20 @@ namespace CatalogOrder.Api.Services
             var internalKey = _configuration["InternalService:ApiKey"];
 
             _httpClient.DefaultRequestHeaders.Add("x-internal-key", internalKey);
-
+      
             var response = await _httpClient.PostAsJsonAsync("/internal/orders/process", request);
+            var jsonRaw = await response.Content.ReadAsStringAsync();
+            //var json = JsonSerializer.Deserialize<OrderProcessingResponseDto>(jsonRaw);
+            //string? message = json?.Message;
+            var doc = JsonDocument.Parse(jsonRaw);
+            string message = doc.RootElement.GetProperty("message").GetString();
 
             if (!response.IsSuccessStatusCode)
             {
                 return new OrderProcessingResponseDto
                 {
                     Success = false,
-                    Message = "Error procesando la orden"
+                    Message = message ?? "Error procesando la orden"
                 };
             }
 

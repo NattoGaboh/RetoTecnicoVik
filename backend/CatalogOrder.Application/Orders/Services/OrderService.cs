@@ -9,15 +9,10 @@ namespace CatalogOrder.Application.Orders.Services
     public class OrderService
     {
         private readonly IAppDbContext _context;
-
         private readonly ICurrentUserService _currentUser;
-
         private readonly IOrderProcessingClient _processingClient;
 
-        public OrderService(
-            IAppDbContext context,
-            ICurrentUserService currentUser,
-            IOrderProcessingClient processingClient)
+        public OrderService(IAppDbContext context,ICurrentUserService currentUser,IOrderProcessingClient processingClient)
         {
             _context = context;
             _currentUser = currentUser;
@@ -37,10 +32,7 @@ namespace CatalogOrder.Application.Orders.Services
 
             foreach (var item in processingResult.Items)
             {
-                order.AddDetail(
-                    item.ProductId,
-                    item.Quantity,
-                    item.UnitPrice);
+                order.AddDetail(item.ProductId,item.Quantity,item.UnitPrice);
 
                 var product = await _context.Products.FirstAsync(x => x.Id == item.ProductId);
 
