@@ -4,7 +4,7 @@ Reto técnico desarrollado con .NET 8, Angular y SQL Server usando Clean Archite
 
 ---
 
-# Overview
+# Descripción General
 
 Esta solución permite autenticar usuarios para:
 
