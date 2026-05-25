@@ -7,7 +7,7 @@ namespace CatalogOrder.Api.Controllers
 {
 
     [ApiController]
-    [Route("api/orders")]
+    [Route("api/[Controller]")]
     [Authorize]
     public class OrdersController : ControllerBase
     {
@@ -19,11 +19,9 @@ namespace CatalogOrder.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(
-            CreateOrderRequestDto request)
+        public async Task<IActionResult> Create(CreateOrderRequestDto request)
         {
-            var result =
-                await _service.CreateAsync(request);
+            var result = await _service.CreateAsync(request);
 
             if (!result.Success)
             {

@@ -16,35 +16,28 @@ namespace CatalogOrder.Api.Services
         }
 
         public async Task<OrderProcessingResponseDto>
-            ProcessOrderAsync(
-                CreateOrderRequestDto request)
+            ProcessOrderAsync(CreateOrderRequestDto request)
         {
-            var internalKey =
-                _configuration["InternalService:ApiKey"];
+            var internalKey = _configuration["InternalService:ApiKey"];
 
-            _httpClient.DefaultRequestHeaders
-                .Add("x-internal-key", internalKey);
+            _httpClient.DefaultRequestHeaders.Add("x-internal-key", internalKey);
 
-            var response = await _httpClient.PostAsJsonAsync(
-                "/internal/orders/process",
-                request);
+            var response = await _httpClient.PostAsJsonAsync("/internal/orders/process", request);
 
             if (!response.IsSuccessStatusCode)
             {
                 return new OrderProcessingResponseDto
                 {
                     Success = false,
-                    Message = "Error processing order."
+                    Message = "Error procesando la orden"
                 };
             }
 
-            return await response
-                .Content
-                .ReadFromJsonAsync<OrderProcessingResponseDto>()
+            return await response.Content.ReadFromJsonAsync<OrderProcessingResponseDto>()
                 ?? new OrderProcessingResponseDto
                 {
                     Success = false,
-                    Message = "Invalid response."
+                    Message = "Response inválido"
                 };
         }
     }

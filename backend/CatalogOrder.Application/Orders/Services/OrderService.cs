@@ -24,19 +24,16 @@ namespace CatalogOrder.Application.Orders.Services
             _processingClient = processingClient;
         }
 
-        public async Task<ApiResponse<Guid>> CreateAsync(
-            CreateOrderRequestDto request)
+        public async Task<ApiResponse<Guid>> CreateAsync(CreateOrderRequestDto request)
         {
-            var processingResult =
-                await _processingClient.ProcessOrderAsync(request);
+            var processingResult = await _processingClient.ProcessOrderAsync(request);
 
             if (!processingResult.Success)
             {
                 return ApiResponse<Guid>.Fail(processingResult.Message);
             }
 
-            var order = new Order(
-                _currentUser.Username);
+            var order = new Order(_currentUser.Username);
 
             foreach (var item in processingResult.Items)
             {
@@ -58,7 +55,7 @@ namespace CatalogOrder.Application.Orders.Services
 
             await _context.SaveChangesAsync();
 
-            return ApiResponse<Guid>.Ok(order.Id);
+            return ApiResponse<Guid>.Ok(order.Id, processingResult.Message);
         }
     }
 }

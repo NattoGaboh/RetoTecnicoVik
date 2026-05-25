@@ -23,8 +23,7 @@ builder.Services.AddScoped<ICurrentUserService, CurrentUserService>();
 
 builder.Services.AddHttpClient<IOrderProcessingClient, OrderProcessingClient>(client =>
     {
-        client.BaseAddress = new Uri(
-            builder.Configuration["InternalService:BaseUrl"]!);
+        client.BaseAddress = new Uri(builder.Configuration["InternalService:BaseUrl"]!);
     });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

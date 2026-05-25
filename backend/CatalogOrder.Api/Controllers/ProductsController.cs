@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CatalogOrder.Api.Controllers
 {
     [ApiController]
-    [Route("api/products")]
+    [Route("api/[Controller]")]
     [Authorize]
     public class ProductsController : ControllerBase
     {

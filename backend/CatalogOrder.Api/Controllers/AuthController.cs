@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace CatalogOrder.Api.Controllers
 {
     [ApiController]
-    [Route("api/auth")]
+    [Route("api/[Controller]")]
     public class AuthController : ControllerBase
     {
         private readonly AuthService _authService;
