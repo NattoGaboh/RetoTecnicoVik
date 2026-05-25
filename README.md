@@ -59,7 +59,7 @@ Las Responsabilidades son separadas para mejorar:
 
 ---
 
-# Microservice Communication
+# Comunicación entre servicios
 
 La solución incluye un servicio de procesamiento interno:
 
