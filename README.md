@@ -1,6 +1,6 @@
 # Gestión de Catálogo y Órdenes
 
-Desarrollado por: Renato Vilquiniche Lopez. 
+- Desarrollado por: Renato Vilquiniche Lopez. 
 Reto técnico desarrollado con .NET 8, Angular y SQL Server usando Clean Architecture y diseño orientado a microservice.
 
 ---
