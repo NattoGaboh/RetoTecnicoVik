@@ -1,4 +1,3 @@
-# RetoTecnicoVik
 # Gestión de Catálogo y Órdenes
 
 Reto técnico desarrollado con .NET 8, Angular y SQL Server usando Clean Architecture y diseño orientado a microservice.
@@ -148,7 +147,7 @@ El sistema valida:
 ## 1. Clonar repositorio
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/NattoGaboh/RetoTecnicoVik.git
 ```
 
 ---
